@@ -1,4 +1,4 @@
-package com.maze;
+package com.maze.ui;
 
 import java.util.Scanner;
 

@@ -5,7 +5,7 @@ import com.maze.ui.WorkMode;
 
 import java.util.Scanner;
 
-public class MazeController {
+public class MazeApplication {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static WorkMode workMode = WorkMode.SIMPLE;
