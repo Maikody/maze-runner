@@ -1,36 +1,39 @@
 package com.maze;
 
+import com.maze.ui.UserInterface;
+import com.maze.ui.WorkMode;
+
 import java.util.Scanner;
 
 public class MazeController {
 
-    private static WorkMode workMode = WorkMode.SIMPLE;
-    private static Maze maze = new Maze();
     private static final Scanner scanner = new Scanner(System.in);
+    private static WorkMode workMode = WorkMode.SIMPLE;
+    private static MazeProcessor mazeProcessor = new MazeProcessor();
 
     public static void run() {
         while (true) {
            switch (UserInterface.getUserSelection(workMode)) {
                case GENERATE_MAZE:
                    System.out.println("Enter the size of a new maze:");
-                   maze = new Maze(UserInterface.validateIntegerInput(scanner.nextLine()));
+                   mazeProcessor = new MazeProcessor(UserInterface.validateIntegerInput(scanner));
+                   mazeProcessor.generateMaze();
                    workMode = WorkMode.FULL;
-                   maze.drawMaze();
                    break;
                case LOAD_MAZE:
-                   if (maze.loadMaze(scanner.nextLine()))
+                   System.out.println("Enter the file name:");
+                   if (mazeProcessor.loadMaze(scanner.nextLine()))
                         workMode = WorkMode.FULL;
                    break;
                case SAVE_MAZE:
-                   maze.saveMaze(scanner.nextLine());
+                   System.out.println("Enter the file name:");
+                   mazeProcessor.saveMaze(scanner.nextLine());
                    break;
                case DISPLAY_MAZE:
-                   maze.drawMaze();
+                   mazeProcessor.displayMaze();
                    break;
                case SOLVE_MAZE:
-                   maze.solveMaze();
-                   maze.drawMaze();
-                   maze.deletePathFromMaze();
+                   mazeProcessor.solveMaze();
                    break;
                case EXIT:
                    System.out.println("Bye!");

@@ -8,10 +8,10 @@ public class UserInterface {
 
         Scanner scanner = new Scanner(System.in);
 
-        while(true) {
-            displayOptions(workMode);
+        displayOptions(workMode);
 
-            int n = validateIntegerInput(scanner.nextLine());
+        while(true) {
+            int n = validateIntegerInput(scanner);
             if (workMode == WorkMode.SIMPLE) {
                 switch (n) {
                     case 1: return UserSelection.GENERATE_MAZE;
@@ -33,10 +33,10 @@ public class UserInterface {
         }
     }
 
-    public static int validateIntegerInput(String input) {
+    public static int validateIntegerInput(Scanner scanner) {
         while (true) {
             try {
-                return Integer.parseInt(input);
+                return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Enter only numbers!");
             }
